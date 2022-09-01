@@ -1,6 +1,7 @@
 package exercicio.java.angular.backend.documentos.service;
 
 import exercicio.java.angular.backend.documentos.model.Documento;
+import exercicio.java.angular.backend.historicos.model.Historico;
 
 import java.util.List;
 import java.util.Optional;

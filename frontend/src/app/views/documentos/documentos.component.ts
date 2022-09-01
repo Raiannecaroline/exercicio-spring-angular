@@ -10,6 +10,7 @@ import {
 import {
   TransferirDialogComponent
 } from "../../shared/transferir-dialog/transferir-dialog.component";
+import { HistoricoDialogComponentComponent } from 'src/app/shared/historico-dialog/historico-dialog.component.component';
 
 @Component({
   selector: 'app-documentos',
@@ -45,7 +46,7 @@ export class DocumentosComponent implements OnInit {
   salvar(doc: Documento = {titulo: "Novo documento"}): void {
     this.dialog.open(DocumentoDialogComponent, {
       data: ({...doc}),
-      width: "50%"
+      width: "100%"
     }).afterClosed().subscribe(async result => {
       if (result) {
         await this.api.salvarDocumento(this.setorId, this.pastaId, result);
@@ -54,10 +55,20 @@ export class DocumentosComponent implements OnInit {
     });
   }
 
+  async verHistorico(docId: number) {
+
+    const historicos = await this.api.listarHistorico(this.setorId, this.pastaId, docId);
+
+    this.dialog.open(HistoricoDialogComponentComponent, {
+      data: historicos,
+      width: "100%"
+    });
+  }
+
   transferir(doc: Documento) {
     this.dialog.open(TransferirDialogComponent, {
       data: ({...doc}),
-      width: "50%"
+      width: "100%"
     }).afterClosed().subscribe(async (result: DadosTransferencia) => {
       if (result) {
         const {setor, pasta, documento} = result;

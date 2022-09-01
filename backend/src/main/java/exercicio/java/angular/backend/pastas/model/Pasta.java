@@ -21,4 +21,25 @@ public class Pasta {
     private Setor setor;
 
     private String nome;
+
+    @Override
+    public  boolean equals(Object obj) {
+
+        if (obj == null) {
+            return  false;
+        }
+
+        if (obj== this) {
+            return true;
+        }
+
+        if(!(obj instanceof Pasta)) return false;
+
+        Pasta pasta = (Pasta)obj;
+
+        if (this.setor == null && pasta.setor != null) {return  false;}
+
+        return this.getId() == pasta.getId() && this.getNome() == pasta.getNome() && this.setor.equals(pasta.setor);
+
+    }
 }

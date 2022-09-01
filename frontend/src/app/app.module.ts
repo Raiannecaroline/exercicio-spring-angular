@@ -23,6 +23,8 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatMenuModule} from "@angular/material/menu";
 import { TransferirDialogComponent } from './shared/transferir-dialog/transferir-dialog.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { HistoricoDialogComponentComponent } from './shared/historico-dialog/historico-dialog.component.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     DocumentosComponent,
     DocumentoDialogComponent,
     TransferirDialogComponent,
+    HistoricoDialogComponentComponent,
   ],
   imports: [
     BrowserModule,

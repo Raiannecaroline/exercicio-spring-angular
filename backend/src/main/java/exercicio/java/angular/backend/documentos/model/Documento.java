@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,4 +26,25 @@ public class Documento {
     private Pasta pasta;
 
     private String titulo;
+
+    @Override
+    public  boolean equals(Object obj) {
+
+        if (obj == null) {
+            return  false;
+        }
+
+        if (obj== this) {
+            return true;
+        }
+
+        if(!(obj instanceof Documento)) return false;
+
+        Documento documento = (Documento)obj;
+
+        if (this.pasta == null && documento.pasta != null) {return  false;}
+
+        return this.getId() == documento.getId() && this.getTitulo() == documento.getTitulo() && this.pasta.equals(documento.pasta);
+
+    }
 }

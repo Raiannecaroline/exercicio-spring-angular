@@ -3,6 +3,7 @@ import {Axios} from "axios";
 
 import {environment} from "../../environments/environment";
 import {Documento, Pasta, Setor} from "../models";
+import Historico from '../models/Historico';
 
 @Injectable()
 export class ApiService {
@@ -42,6 +43,11 @@ export class ApiService {
   async salvarDocumento(setorId: number, pastaId: number, doc: any): Promise<Documento> {
     const path = `/setores/${setorId}/pastas/${pastaId}/documentos`;
     const result = await this.cli[doc.id ? "put" : "post"](path, JSON.stringify(doc));
+    return JSON.parse(result.data);
+  }
+
+  async listarHistorico(setorId: number, pastaId: number, documento_id: number): Promise<Historico[]> {        
+    const result = await this.cli.get(`/setores/${setorId}/pastas/${pastaId}/documentos/${documento_id}/historicos`);
     return JSON.parse(result.data);
   }
 }
